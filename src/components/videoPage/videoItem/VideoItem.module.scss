@@ -1,5 +1,5 @@
 .container {
-	@apply gap-5 flex;
+	@apply gap-5 flex mb-3;
 	.videoThumbnail {
 		@apply rounded-lg;
 		max-width: 200px;

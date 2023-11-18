@@ -1,0 +1,15 @@
+/* .container {
+	@apply p-2 max-w-md; */
+.videoThumbnail {
+	@apply rounded-xl;
+}
+.data {
+	@apply flex my-2 gap-3;
+	.content {
+		@apply flex flex-col;
+		.title {
+			@apply font-bold;
+		}
+	}
+}
+//}

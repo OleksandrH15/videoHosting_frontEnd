@@ -1,0 +1,6 @@
+.wrapper {
+	@apply flex gap-3;
+	.videoItem {
+		@apply max-w-sm;
+	}
+}

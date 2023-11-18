@@ -1,0 +1,9 @@
+.writeReviewBlock {
+	@apply flex gap-4 m-2;
+	.input {
+		@apply flex flex-col gap-2;
+		.buttons {
+			@apply flex justify-end;
+		}
+	}
+}
