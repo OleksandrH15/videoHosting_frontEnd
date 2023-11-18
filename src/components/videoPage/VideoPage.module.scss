@@ -1,0 +1,15 @@
+.container {
+	@apply flex gap-5;
+	.content {
+		@apply max-w-4xl flex flex-col gap-4;
+	}
+	h1 {
+		@apply text-2xl;
+	}
+	.videos {
+		@apply gap-3 w-full;
+		.videoItem {
+			@apply max-w-sm;
+		}
+	}
+}

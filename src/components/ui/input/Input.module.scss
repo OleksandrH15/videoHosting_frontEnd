@@ -1,0 +1,9 @@
+.container {
+	@apply border-b;
+	textarea {
+		background-color: #121212;
+		&:focus {
+			@apply outline-none;
+		}
+	}
+}

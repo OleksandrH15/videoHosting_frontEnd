@@ -1,0 +1,12 @@
+.container {
+	@apply bg-slate-400 w-60 h-screen fixed;
+	.listItem {
+		@apply p-2 flex gap-4 items-center;
+		&:hover {
+			@apply bg-slate-100;
+		}
+		span {
+			@apply text-xl;
+		}
+	}
+}

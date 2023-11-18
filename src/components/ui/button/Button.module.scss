@@ -1,0 +1,30 @@
+.container {
+	@apply rounded-3xl p-1.5 px-3 font-semibold cursor-pointer;
+}
+.disabled {
+	@apply cursor-default opacity-30;
+}
+.containedDark {
+	@apply bg-lightGray;
+	&:hover {
+		background-color: #323232;
+	}
+}
+.containedLight {
+	@apply bg-cream text-darkGray;
+	button:not([disabled]):hover {
+		@apply opacity-80;
+	}
+}
+.outlinedDark {
+	@apply text-cream;
+	&:hover {
+		@apply bg-lightGray;
+	}
+}
+.outlinedLight {
+	@apply text-cream;
+	&:hover {
+		@apply bg-cream text-darkGray;
+	}
+}

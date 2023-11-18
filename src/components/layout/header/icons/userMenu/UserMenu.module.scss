@@ -1,0 +1,13 @@
+.userMenu {
+	.header {
+		@apply p-5 flex items-center gap-2 border-b;
+	}
+	.list {
+		.listItem {
+			@apply flex;
+			&:hover {
+				@apply bg-slate-400 cursor-pointer;
+			}
+		}
+	}
+}

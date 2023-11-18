@@ -1,0 +1,12 @@
+.container {
+	@apply rounded-full overflow-hidden;
+	.avatar {
+		@apply object-cover h-full w-full;
+	}
+}
+.huge {
+	@apply w-56 h-56;
+}
+.small {
+	@apply w-10 h-10;
+}

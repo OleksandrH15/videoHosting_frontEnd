@@ -1,0 +1,21 @@
+.container {
+	@apply p-5;
+	.modal {
+		@apply grid grid-cols-3 gap-5;
+		.content {
+			@apply flex flex-col col-span-2 gap-4;
+			.inputContainer {
+				@apply rounded-xl;
+			}
+			.error {
+				@apply text-xs;
+			}
+			.activeError {
+				@apply text-red-500;
+			}
+			p {
+				@apply flex justify-end;
+			}
+		}
+	}
+}

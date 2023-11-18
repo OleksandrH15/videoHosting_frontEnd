@@ -1,0 +1,12 @@
+.container {
+	@apply flex items-center overflow-hidden border border-lightGray rounded-3xl;
+	input {
+		@apply w-full p-2 px-4 bg-darkGray;
+		&:focus {
+			@apply outline-none;
+		}
+	}
+	span {
+		@apply text-2xl bg-lightGray p-2 px-4;
+	}
+}

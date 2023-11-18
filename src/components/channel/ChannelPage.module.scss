@@ -1,0 +1,12 @@
+.wrapper {
+	@apply ml-36;
+	> div {
+		@apply px-32 py-10;
+	}
+	.videos {
+		@apply flex gap-3;
+		.videoItem {
+			max-width: 17rem;
+		}
+	}
+}
