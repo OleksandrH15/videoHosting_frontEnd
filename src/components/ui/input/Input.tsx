@@ -1,21 +1,41 @@
+import React from 'react'
 import s from './Input.module.scss'
+
 interface IProps {
-	value?: string | number
-	cols?: number
-	rows?: number
-	onChange?:
-		| React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
-		| undefined
+	onChange: React.ChangeEventHandler<HTMLInputElement> | undefined
+	value?: string | number | readonly string[] | undefined
+	onBlur?: React.FocusEventHandler<HTMLInputElement> | undefined
+	onFocus?: React.FocusEventHandler<HTMLInputElement> | undefined
+	required?: boolean
+	registerConfig?: any
+	placeholder?: string
+	name?: string
+	type?: 'text' | 'email' | 'password'
 }
-const Input: React.FC<IProps> = ({ value, cols, rows = 1, onChange }) => {
+
+const Input: React.FC<IProps> = ({
+	onChange,
+	value,
+	onBlur,
+	onFocus,
+	required,
+	registerConfig,
+	placeholder,
+	name,
+	type = 'text',
+}) => {
 	return (
 		<div className={s.container}>
-			<textarea
-				value={value}
+			<input
+				name={name}
+				placeholder={placeholder}
+				{...registerConfig}
+				type={type}
 				onChange={onChange}
-				cols={cols}
-				rows={rows}
-				className={s.input}
+				value={value}
+				onBlur={onBlur}
+				onFocus={onFocus}
+				required={required}
 			/>
 		</div>
 	)

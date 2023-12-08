@@ -1,5 +1,5 @@
 .navbar {
-	@apply w-52 h-screen overflow-hidden bg-darkGray;
+	@apply w-52 h-screen float-left bg-darkGray mr-5 fixed top-14;
 	.list {
 		@apply m-2;
 		.listItem {

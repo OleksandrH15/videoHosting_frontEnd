@@ -5,6 +5,7 @@ interface IProps {
 	onClick?: any
 	className?: any
 	disabled?: boolean
+	size?: 'min' | 'max'
 	type?: 'button' | 'submit' | 'reset' | undefined
 	variant?:
 		| 'outlined-light'
@@ -19,22 +20,25 @@ const Button: React.FC<IProps> = ({
 	variant = 'contained-dark',
 	disabled,
 	type,
+	size,
 }) => {
 	return (
-		<div
-			onClick={onClick}
-			className={clsx(s.container, className, {
-				[s.outlinedLight]: variant === 'outlined-light',
-				[s.outlinedDark]: variant === 'outlined-dark',
-				[s.containedDark]: variant === 'contained-dark',
-				[s.containedLight]: variant === 'contained-light',
-				[s.disabled]: disabled,
-			})}
-		>
-			<button disabled={disabled} type={type}>
+		<button disabled={disabled} type={type}>
+			<div
+				onClick={onClick}
+				className={clsx(s.container, className, {
+					[s.outlinedLight]: variant === 'outlined-light',
+					[s.outlinedDark]: variant === 'outlined-dark',
+					[s.containedDark]: variant === 'contained-dark',
+					[s.containedLight]: variant === 'contained-light',
+					[s.max]: size === 'max',
+					[s.min]: size === 'min',
+					[s.disabled]: disabled,
+				})}
+			>
 				{children}
-			</button>
-		</div>
+			</div>
+		</button>
 	)
 }
 

@@ -1,21 +1,21 @@
 import { FormEvent, useState } from 'react'
-import { IVideoResponse } from '../../../../interfaces/video.interfaces'
+import { IVideoWithAuthorResponse } from '../../../../interfaces/video.interfaces'
 import { useAddReviewMutation } from '../../../../services/review.services'
-import { useCustomContext } from '../../../layout/Layout'
+import { useUserLayoutContext } from '../../../layout/Layout'
 import Avatar from '../../../ui/avatar/Avatar'
 import Button from '../../../ui/button/Button'
-import Input from '../../../ui/input/Input'
+import TextArea from '../../../ui/textArea/TextArea'
 import s from './AddReview.module.scss'
 interface IProps {
-	video?: IVideoResponse
+	video?: IVideoWithAuthorResponse
 }
 const AddReview: React.FC<IProps> = ({ video }) => {
 	const [review, setReview] = useState('')
 	const [addReview] = useAddReviewMutation()
 
-	const { userResponse } = useCustomContext()
+	const { userResponse } = useUserLayoutContext()
 	const { data, isLoading } = userResponse || {}
-
+	console.log()
 	const submitReview = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		addReview({ description: review, videoId: video?.video.id })
@@ -31,7 +31,7 @@ const AddReview: React.FC<IProps> = ({ video }) => {
 					<>
 						<Avatar src={data?.user.thumbnail} />
 						<div className={s.input}>
-							<Input
+							<TextArea
 								cols={110}
 								rows={2}
 								onChange={e => setReview(e.target.value)}

@@ -1,65 +1,86 @@
-import { Button } from '@mui/material'
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import ReactPlayer from 'react-player'
-import Input from '../../ui/input/Input'
+import { useConvertFile } from '../../../hooks/useConvertFile'
+import { IVideoPush } from '../../../interfaces/video.interfaces'
+import { useAddVideoMutation } from '../../../services/video.services'
+import { useCabinetContext } from '../../layout/userCabinet/userCabinetLayout'
+import Button from '../../ui/button/Button'
+import TextArea from '../../ui/textArea/TextArea'
+import UploadPhoto from '../../ui/uploadPhoto/UploadPhoto'
+import UploadVideo from '../uploadVideo/UploadVideo'
 import s from './AddVideo.module.scss'
 const AddVideo: React.FC = () => {
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
-	const [video, setVideo] = useState<string | null>(null)
-	const [thumbnail, setThumbnail] = useState<string | null>(null)
+	const [thumbnail, setThumbnail] = useState<File>()
+	const [video, setVideo] = useState<File>()
+	const [addVideo] = useAddVideoMutation()
+	const { userResponse } = useCabinetContext()
+	const [convertedVideo, setEventVideo] = useConvertFile()
+	const [convertedThumbnail, setEventThumbnail] = useConvertFile()
+	const hiddenFileInput = useRef<HTMLInputElement>(null)
+	const { register, handleSubmit } = useForm<IVideoPush>()
+
+	const handleThumbnailRef = () => {
+		if (hiddenFileInput.current) {
+			hiddenFileInput.current.click()
+		} else {
+			console.error('hiddenFileInput is null or undefined')
+		}
+	}
 
 	const handleVideoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files && e.target.files[0]
-		if (file) {
-			const reader = new FileReader()
-			reader.onloadend = () => {
-				setVideo(reader.result as string)
-			}
-			reader.readAsDataURL(file)
-		}
+		setEventVideo(e)
 	}
 	const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files && e.target.files[0]
-		if (file) {
-			const reader = new FileReader()
-			reader.onloadend = () => {
-				setThumbnail(reader.result as string)
-			}
-			reader.readAsDataURL(file)
+		setEventThumbnail(e)
+	}
+	const handleSetThumbnail = (event: React.ChangeEvent<HTMLInputElement>) => {
+		handleThumbnailChange(event)
+		if (event.target.files) {
+			setThumbnail(event.target.files[0])
 		}
 	}
+
+	const onSubmit = (data: IVideoPush) => {
+		console.log(thumbnail)
+		let formData = new FormData()
+		formData.append('thumbnail', thumbnail)
+		formData.append('video', video)
+		if (userResponse) {
+			formData.append('authorId', userResponse?.data?.user.id)
+		}
+		formData.append('description', data.description)
+		formData.append('title', data.title)
+		addVideo(formData)
+	}
+
 	return (
-		<div className={s.container}>
-			{!video && (
-				<>
-					<input
-						style={{ display: 'none' }}
-						id='raised-button-file'
-						type='file'
-						onChange={handleVideoChange}
-					/>
-					<label htmlFor='raised-button-file'>
-						<Button component='span'>Upload</Button>
-					</label>
-				</>
+		<form onSubmit={handleSubmit(onSubmit)} className={s.container}>
+			{!convertedVideo && (
+				<UploadVideo
+					setVideo={setVideo}
+					handleVideoChange={handleVideoChange}
+				/>
 			)}
-			{!video && (
+			{convertedVideo && (
 				<div className={s.modal}>
 					<div className={s.content}>
 						<div className={s.inputContainer}>
-							<Input
-								rows={3}
+							<TextArea
 								value={title}
 								onChange={e => setTitle(e.target.value)}
+								registerConfig={register('title')}
 							/>
 						</div>
 						<p
 							className={clsx(s.error, { [s.activeError]: title.length > 100 })}
 						>{`${title.length} / 100`}</p>
 						<div className={s.inputContainer}>
-							<Input
+							<TextArea
+								registerConfig={register('description')}
 								value={description}
 								onChange={e => setDescription(e.target.value)}
 								rows={6}
@@ -71,30 +92,39 @@ const AddVideo: React.FC = () => {
 							})}
 						>{`${description.length} / 5000`}</p>
 						<div>
-							Upload thumbnail
 							<input
-								style={{ display: 'none' }}
-								id='upload-thumbnail'
+								ref={hiddenFileInput}
+								onChange={handleSetThumbnail}
 								type='file'
-								onChange={handleThumbnailChange}
+								style={{ display: 'none' }}
 							/>
-							<label htmlFor='upload-thumbnail'>
-								<Button component='span'>Upload</Button>
-							</label>
 						</div>
-						<div>{thumbnail && <img src={thumbnail} alt='thumbnail' />}</div>
+						<Button type='submit' variant='contained-light' size='max'>
+							SUBMIT
+						</Button>
 					</div>
-					<div>
+
+					<div className={s.preview}>
+						<span>Preview</span>
+						<span>Video</span>
 						<ReactPlayer
-							url={video as string}
-							width={300}
-							height={180}
+							url={convertedVideo as string}
+							width={400}
+							height={250}
 							controls={true}
 						/>
+						<span>Thumbnail</span>
+						{!thumbnail && (
+							<UploadPhoto handleThumbnailRef={handleThumbnailRef} />
+						)}
+
+						{thumbnail && (
+							<img src={convertedThumbnail as string} alt='thumbnail' />
+						)}
 					</div>
 				</div>
 			)}
-		</div>
+		</form>
 	)
 }
 

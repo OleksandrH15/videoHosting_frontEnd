@@ -1,13 +1,13 @@
-import { IVideoResponse } from '../../../interfaces/video.interfaces'
+import { IVideoWithAuthorResponse } from '../../../interfaces/video.interfaces'
 import { useGetReviewsByIdQuery } from '../../../services/review.services'
 import AddReview from './addReview/AddReview'
 import ReviewItem from './reviewItem/ReviewItem'
 interface IProps {
-	videoResponse: IVideoResponse | undefined
+	videoResponse: IVideoWithAuthorResponse | undefined
 }
 const Reviews: React.FC<IProps> = ({ videoResponse: video }) => {
 	const { data: reviews } = useGetReviewsByIdQuery(video?.video.id)
-
+	console.log(video)
 	return (
 		<div>
 			<AddReview video={video} />

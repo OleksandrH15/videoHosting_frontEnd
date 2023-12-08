@@ -9,6 +9,7 @@ import ChannelPage from './components/channel/ChannelPage'
 import Layout from './components/layout/Layout'
 import UserCabinetLayout from './components/layout/userCabinet/userCabinetLayout'
 import MainPage from './components/mainPage/MainPage'
+import SearchedVideos from './components/searched/SearchedVideos'
 import Subscriptions from './components/subscriberVideos/Subscriptions'
 import VideoPage from './components/videoPage/VideoPage'
 import './index.css'
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
 			{
 				path: '/channel/:userId',
 				element: <ChannelPage />,
+			},
+			{
+				path: '/searched',
+				element: <SearchedVideos />,
 			},
 		],
 	},

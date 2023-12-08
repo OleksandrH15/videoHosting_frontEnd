@@ -5,12 +5,14 @@ interface IProps {
 	video: IVideoS
 }
 const VideoItem: React.FC<IProps> = ({ video }) => {
-	console.log(video)
 	return (
 		<Link to={`/video/${video.videoId}`}>
 			<div className={s.container}>
 				<div>
-					<img className={s.videoThumbnail} src={video.thumbnail} />
+					<img
+						className={s.videoThumbnail}
+						src={`data:image/png;base64,${video.thumbnail}`}
+					/>
 				</div>
 				<div>
 					<h3>{video.title}</h3>

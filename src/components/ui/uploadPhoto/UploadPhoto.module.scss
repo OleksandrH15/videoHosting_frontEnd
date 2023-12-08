@@ -1,0 +1,14 @@
+.container {
+	@apply border border-dashed p-2 rounded-lg cursor-pointer h-52 relative;
+	.content {
+		@apply absolute top-1/2 left-1/2;
+		transform: translate(-50%, -50%);
+
+		.icon {
+			@apply text-2xl flex justify-center;
+		}
+		.text {
+			@apply whitespace-nowrap;
+		}
+	}
+}

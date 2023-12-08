@@ -17,5 +17,11 @@
 				@apply flex justify-end;
 			}
 		}
+		.preview {
+			@apply flex flex-col gap-3;
+		}
 	}
+}
+.input {
+	@apply w-full;
 }

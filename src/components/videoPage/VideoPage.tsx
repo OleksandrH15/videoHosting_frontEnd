@@ -5,7 +5,7 @@ import {
 	useGetAllVideosByUserIdQuery,
 	useGetVideoByIdQuery,
 } from '../../services/video.services'
-import { useCustomContext } from '../layout/Layout'
+import { useUserLayoutContext } from '../layout/Layout'
 import s from './VideoPage.module.scss'
 import Reviews from './reviews/Reviews'
 import VideoAction from './videoAction/VideoAction'
@@ -14,10 +14,14 @@ import VideoItem from './videoItem/VideoItem'
 const VideoPage: React.FC = () => {
 	const { id } = useParams()
 	const { data: videoResponse } = useGetVideoByIdQuery(Number(id))
-	const { setOpenMenu } = useCustomContext()
+	const { setOpenMenu } = useUserLayoutContext()
 	const { data: video } = useGetAllVideosByUserIdQuery(
 		videoResponse?.video.authorId
 	)
+
+	// const blobURL = window.URL.createObjectURL(videoResponse?.video.videoData)
+	//const videoSource = `data:video/mp4;base64,${videoResponse?.video.videoData}`
+
 	console.log(videoResponse)
 	useEffect(() => {
 		setOpenMenu(false)
@@ -29,16 +33,16 @@ const VideoPage: React.FC = () => {
 					width={900}
 					height={500}
 					controls={true}
-					url={`https://drive.google.com/uc?export=view&id=${videoResponse?.video.path}`}
+					url={'data:video/mp4;base64,' + videoResponse?.video.videoData}
 				/>
 				<h1>{videoResponse?.video.title}</h1>
 				<VideoAction videoResponse={videoResponse} />
 				<VideoDescription videoResponse={videoResponse} />
-				<Reviews videoResponse={undefined} />
+				<Reviews videoResponse={videoResponse} />
 			</div>
 			<div className={s.videos}>
 				{video
-					?.filter(v => v.id != Number(id))
+					?.filter(v => v.videoId !== Number(id))
 					.reverse()
 					.map(v => (
 						<React.Fragment key={v.id}>

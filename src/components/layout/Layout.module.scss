@@ -1,6 +1,6 @@
-.layoutContainer {
-	@apply fixed z-50;
-}
 .outlet {
-	@apply pt-20 pl-20;
+	@apply p-20 transition-all duration-300 ease-in-out;
+}
+.open {
+	@apply ml-48;
 }

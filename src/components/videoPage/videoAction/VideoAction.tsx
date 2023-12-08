@@ -1,6 +1,6 @@
 import { BiDislike, BiLike } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
-import { IVideoResponse } from '../../../interfaces/video.interfaces'
+import { IVideoWithAuthorResponse } from '../../../interfaces/video.interfaces'
 import {
 	useAddDislikeMutation,
 	useAddLikeMutation,
@@ -10,7 +10,7 @@ import Avatar from '../../ui/avatar/Avatar'
 import Button from '../../ui/button/Button'
 import s from './VideoAction.module.scss'
 interface IProps {
-	videoResponse?: IVideoResponse
+	videoResponse?: IVideoWithAuthorResponse
 }
 const VideoAction: React.FC<IProps> = ({ videoResponse }) => {
 	//const { userResponse } = useCustomContext()

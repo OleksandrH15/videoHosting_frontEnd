@@ -1,8 +1,9 @@
-import { Avatar, Box, Button, TextField, Typography } from '@mui/material'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { ILogin } from '../../../interfaces/auth.interfaces'
 import { useLoginMutation } from '../../../services/auth.services'
+import Button from '../../ui/button/Button'
+import Input from '../../ui/input/Input'
 import s from '../Auth.module.scss'
 
 export default function SignIn() {
@@ -17,13 +18,10 @@ export default function SignIn() {
 	}
 
 	return (
-		<Box className={s.loginContainer}>
-			<Box className={s.loginContent}>
-				<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
-				<Typography component='h1' variant='h5'>
-					Sign in
-				</Typography>
-				<form onSubmit={handleSubmit(onSubmit)}>
+		<div className={s.authContainer}>
+			<div className={s.authContent}>
+				<h5>Sign in</h5>
+				<form onSubmit={handleSubmit(onSubmit)} className={s.inputs}>
 					<Controller
 						name='email'
 						control={control}
@@ -36,16 +34,7 @@ export default function SignIn() {
 						}}
 						render={({ field, fieldState }) => (
 							<>
-								<TextField
-									margin='normal'
-									required
-									fullWidth
-									id='email'
-									label='Email Address'
-									autoComplete='email'
-									autoFocus
-									{...field}
-								/>
+								<Input {...field} placeholder='Email' type='email' />
 								{fieldState.error && (
 									<p className={s.error}>{fieldState.error.message}</p>
 								)}
@@ -58,16 +47,7 @@ export default function SignIn() {
 						rules={{ required: 'Password is required' }}
 						render={({ field, fieldState }) => (
 							<>
-								<TextField
-									margin='normal'
-									required
-									fullWidth
-									label='Password'
-									type='password'
-									id='password'
-									autoComplete='current-password'
-									{...field}
-								/>
+								<Input {...field} placeholder='Password' type='password' />
 								{fieldState.error && (
 									<p className={s.error}>{fieldState.error.message}</p>
 								)}
@@ -77,17 +57,12 @@ export default function SignIn() {
 							</>
 						)}
 					/>
-					<Button
-						type='submit'
-						fullWidth
-						variant='contained'
-						sx={{ mt: 3, mb: 2 }}
-					>
+					<Button type='submit' variant='contained-light'>
 						Sign In
 					</Button>
 				</form>
 				<Link to='/registration'>Don't have an account? Sign Up</Link>
-			</Box>
-		</Box>
+			</div>
+		</div>
 	)
 }

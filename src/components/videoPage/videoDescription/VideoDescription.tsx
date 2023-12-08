@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { IVideoResponse } from '../../../interfaces/video.interfaces'
+import { IVideoWithAuthorResponse } from '../../../interfaces/video.interfaces'
 import s from './VideoDescription.module.scss'
 interface IProps {
-	videoResponse: IVideoResponse | undefined
+	videoResponse: IVideoWithAuthorResponse | undefined
 }
 const VideoDescription: React.FC<IProps> = ({ videoResponse }) => {
 	const [open, setOpen] = useState(false)

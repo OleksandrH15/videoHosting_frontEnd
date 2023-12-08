@@ -11,9 +11,10 @@ const VideoItem: React.FC<IProps> = ({ video }) => {
 			<Link to={`/video/${video?.videoId}`}>
 				<img
 					className={s.videoThumbnail}
-					src={video.thumbnail}
+					src={`data:image/png;base64, ${video.thumbnail}`}
 					alt='thumbnail'
 				/>
+
 				<div className={s.data}>
 					<Avatar src={video.authorThumbnail} />
 					<div className={s.content}>

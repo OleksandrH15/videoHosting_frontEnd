@@ -1,5 +1,5 @@
 .container {
-	@apply rounded-3xl p-1.5 px-3 font-semibold cursor-pointer;
+	@apply rounded-3xl p-1.5 px-3 font-semibold cursor-pointer whitespace-nowrap;
 }
 .disabled {
 	@apply cursor-default opacity-30;
@@ -27,4 +27,10 @@
 	&:hover {
 		@apply bg-cream text-darkGray;
 	}
+}
+.max {
+	@apply w-max;
+}
+.min {
+	@apply w-min;
 }

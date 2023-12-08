@@ -1,10 +1,16 @@
 .container {
-	@apply border p-2 px-4 rounded-md;
-	input {
+	@apply p-3;
+	textarea {
 		@apply w-full;
 		background-color: #121212;
 		&:focus {
 			@apply outline-none;
 		}
 	}
+}
+.contained {
+	@apply border  rounded-md;
+}
+.outlined {
+	@apply border-b;
 }
