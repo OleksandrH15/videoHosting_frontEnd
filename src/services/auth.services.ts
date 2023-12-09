@@ -4,6 +4,7 @@ import {
 	IMeResponse,
 	IRegister,
 	IResult,
+	IUser,
 	IUserById,
 } from '../interfaces/auth.interfaces'
 import { api } from './api'
@@ -63,6 +64,9 @@ export const authApi = api.injectEndpoints({
 			query: id => `/Auth/${id}`,
 			providesTags: ['Auth'],
 		}),
+		getFollowing: builder.query<IUser[], void>({
+			query: () => '/Auth/getFollowers',
+		}),
 	}),
 })
 
@@ -76,4 +80,5 @@ export const {
 	useGetFollowedUserQuery,
 	useIsFollowingQuery,
 	useGetUserByIdQuery,
+	useGetFollowingQuery,
 } = authApi

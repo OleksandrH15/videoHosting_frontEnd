@@ -1,6 +1,6 @@
-import { Avatar } from '@mui/material'
 import { IUserById } from '../../../interfaces/auth.interfaces'
 import FollowingButton from '../../shared/FollowingButton'
+import Avatar from '../../ui/avatar/Avatar'
 import s from './UserData.module.scss'
 interface IProps {
 	user: IUserById | undefined
@@ -8,7 +8,7 @@ interface IProps {
 const UserData: React.FC<IProps> = ({ user }) => {
 	return (
 		<div className={s.container}>
-			<Avatar src={user?.thumbnail} sx={{ width: 220, height: 220 }} />
+			<Avatar src={user?.thumbnail} size='huge' />
 			<div>
 				<div className={s.title}>{user?.firstName + ' ' + user?.lastName} </div>
 				<div>

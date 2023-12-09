@@ -1,0 +1,12 @@
+.container {
+	@apply flex gap-5;
+	.li {
+		@apply p-0.5 px-3 rounded-lg cursor-pointer bg-lightGray;
+		&:hover {
+			@apply bg-cream text-darkGray;
+		}
+	}
+	.active {
+		@apply text-darkGray bg-cream;
+	}
+}

@@ -1,0 +1,12 @@
+.container {
+	@apply flex gap-10;
+	img {
+		@apply w-32 h-32 object-cover rounded-full;
+	}
+	.content {
+		@apply flex gap-3 justify-between w-full;
+		.videoData {
+			@apply flex flex-col;
+		}
+	}
+}

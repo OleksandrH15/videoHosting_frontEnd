@@ -8,4 +8,7 @@
 			max-width: 17rem;
 		}
 	}
+	.message {
+		@apply text-2xl text-center text-lightGray;
+	}
 }

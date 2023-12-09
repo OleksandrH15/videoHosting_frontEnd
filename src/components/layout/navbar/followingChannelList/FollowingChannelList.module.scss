@@ -1,0 +1,15 @@
+.container {
+	@apply border-y;
+	.header {
+		@apply flex justify-between p-5 items-center cursor-pointer;
+	}
+	.items {
+		@apply overflow-hidden border-b;
+		.item {
+			@apply flex gap-5 items-center px-2 py-1 m-2 rounded-xl text-sm;
+			&:hover {
+				@apply bg-lightGray;
+			}
+		}
+	}
+}

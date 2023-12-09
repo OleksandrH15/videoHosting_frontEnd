@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 import s from './Navbar.module.scss'
 import { navbarList } from './assets/navbarList'
+import FollowingChannelList from './followingChannelList/FollowingChannelList'
 interface IProps {
 	openMenu: boolean
 }
@@ -31,6 +32,7 @@ const Navbar: React.FC<IProps> = ({ openMenu }) => {
 							</li>
 						))}
 					</ul>
+					<FollowingChannelList />
 				</motion.nav>
 			)}
 		</AnimatePresence>

@@ -1,0 +1,22 @@
+.container {
+	@apply flex flex-row gap-3 relative;
+	.videoThumbnail {
+		@apply rounded-xl max-w-xs;
+	}
+	.data {
+		@apply flex my-2 gap-3;
+		.content {
+			@apply flex flex-col gap-2 h-40 max-w-3xl;
+			/* lg:w-large md:w-middle; */
+			h1 {
+				@apply font-bold;
+			}
+			.authorData {
+				@apply flex gap-2 items-center w-full;
+			}
+			.description {
+				@apply overflow-hidden text-ellipsis whitespace-nowrap;
+			}
+		}
+	}
+}
