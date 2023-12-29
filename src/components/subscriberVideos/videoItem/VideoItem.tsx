@@ -1,13 +1,22 @@
-import { Avatar } from '@mui/material'
+import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import { IVideoS } from '../../../interfaces/video.interfaces'
+import { useUserLayoutContext } from '../../layout/Layout'
+import Avatar from '../../ui/avatar/Avatar'
 import s from './VideoItem.module.scss'
 interface IProps {
 	video: IVideoS
 }
 const VideoItem: React.FC<IProps> = ({ video }) => {
+	const { openMenu } = useUserLayoutContext()
+
 	return (
-		<div className={s.container}>
+		<div
+			className={clsx(s.container, {
+				[s.openMenu]: openMenu,
+				[s.closedMenu]: !openMenu,
+			})}
+		>
 			<Link to={`/video/${video?.videoId}`}>
 				<img
 					className={s.videoThumbnail}

@@ -1,5 +1,6 @@
 import { IUserById } from '../interfaces/auth.interfaces'
 import {
+	IVideoData,
 	IVideoS,
 	IVideoWithAuthorResponse,
 } from '../interfaces/video.interfaces'
@@ -7,7 +8,10 @@ import { api } from './api'
 
 export const videoApi = api.injectEndpoints({
 	endpoints: builder => ({
-		getVideoById: builder.query<IVideoWithAuthorResponse, number | undefined>({
+		getVideoById: builder.query<
+			IVideoWithAuthorResponse,
+			number | undefined | null
+		>({
 			query: id => `Video/${id}`,
 			providesTags: ['Video'],
 		}),
@@ -55,6 +59,13 @@ export const videoApi = api.injectEndpoints({
 				formData: true,
 			}),
 		}),
+		updateVideoData: builder.mutation<void, IVideoData>({
+			query: body => ({
+				url: `/Video`,
+				method: 'PUT',
+				body: body,
+			}),
+		}),
 	}),
 })
 
@@ -66,4 +77,5 @@ export const {
 	useGetAllVideosByUserIdQuery,
 	useSearchQuery,
 	useAddVideoMutation,
+	useUpdateVideoDataMutation,
 } = videoApi

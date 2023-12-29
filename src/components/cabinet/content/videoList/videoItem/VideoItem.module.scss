@@ -1,0 +1,24 @@
+.container {
+	@apply flex gap-5 border-b p-10 py-4;
+	.thumbnail {
+		@apply w-1/6 rounded-lg;
+	}
+	.videoData {
+		@apply w-full;
+		button {
+			@apply uppercase;
+		}
+		.data {
+			@apply grid grid-cols-5;
+			.title {
+				@apply col-span-2;
+			}
+			.rates {
+				@apply flex gap-10;
+			}
+		}
+		.description {
+			@apply text-gray-600;
+		}
+	}
+}

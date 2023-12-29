@@ -1,0 +1,6 @@
+.container {
+	@apply flex gap-20 p-5;
+	.uploader {
+		@apply w-52 rounded-full h-52;
+	}
+}

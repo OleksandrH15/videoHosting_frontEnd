@@ -35,3 +35,7 @@ export interface IUserData
 	> {
 	isFollowing: boolean
 }
+export interface IEditProfileForm extends IRegister {
+	password: string
+	confirmPassword: string
+}

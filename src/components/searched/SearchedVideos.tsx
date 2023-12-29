@@ -10,28 +10,28 @@ import VideoItem from './videoItem/VideoItem'
 interface IProps {}
 const SearchedVideos: React.FC<IProps> = ({}) => {
 	const [searchParams, setSearchParams] = useSearchParams()
-	const { data: searchResponse } = useSearchQuery({
-		query: searchParams.get('query'),
-		type: searchParams.get('type'),
-	})
 	const type = searchParams.get('type')
-
+	const query = searchParams.get('query')
+	const { data: searchResponse } = useSearchQuery({
+		query,
+		type,
+	})
+	console.log(searchResponse)
+	console.log(type)
 	return (
 		<div className={s.wrapper}>
 			<Filter searchParams={searchParams} setSearchParams={setSearchParams} />
 			<div className={s.items}>
-				{type === 'video' && (
+				{type == 'video' && (
 					<>
-						{searchResponse?.map((data: IVideoS) => {
-							data.videoData && (
-								<React.Fragment key={data.videoId}>
-									<VideoItem data={data} />
-								</React.Fragment>
-							)
-						})}
+						{searchResponse?.map((data: IVideoS) => (
+							<React.Fragment key={data.videoId}>
+								<VideoItem data={data} />
+							</React.Fragment>
+						))}
 					</>
 				)}
-				{type === 'channel' && (
+				{type == 'channel' && (
 					<>
 						{searchResponse?.map((data: IUserById) => (
 							<React.Fragment key={data.id}>

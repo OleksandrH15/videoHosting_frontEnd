@@ -3,13 +3,21 @@
 .videoThumbnail {
 	@apply rounded-xl;
 }
-.data {
-	@apply flex my-2 gap-3;
-	.content {
-		@apply flex flex-col;
-		.title {
-			@apply font-bold;
+.container {
+	@apply transition-all duration-300 ease-in-out;
+	.data {
+		@apply flex my-2 gap-3;
+		.content {
+			@apply flex flex-col;
+			.title {
+				@apply font-bold;
+			}
 		}
 	}
 }
-//}
+.openMenu {
+	width: 280px;
+}
+.closedMenu {
+	width: 330px;
+}

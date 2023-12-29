@@ -18,11 +18,6 @@ const VideoPage: React.FC = () => {
 	const { data: video } = useGetAllVideosByUserIdQuery(
 		videoResponse?.video.authorId
 	)
-
-	// const blobURL = window.URL.createObjectURL(videoResponse?.video.videoData)
-	//const videoSource = `data:video/mp4;base64,${videoResponse?.video.videoData}`
-
-	console.log(videoResponse)
 	useEffect(() => {
 		setOpenMenu(false)
 	}, [setOpenMenu])

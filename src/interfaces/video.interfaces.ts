@@ -6,7 +6,6 @@ export interface IVideoWithAuthorResponse {
 }
 export interface IVideoWithLikes extends IVideo {
 	id: number
-
 	likesCount: number
 	dislikesCount: number
 }
@@ -31,3 +30,9 @@ export interface IVideoS extends IVideoWithLikes {
 	lastName: string
 	authorThumbnail: string
 }
+export interface IVideoData {
+	videoId: number | null
+	title: string
+	description: string
+}
+export interface IVideoDataForm extends Omit<IVideoData, 'id'> {}

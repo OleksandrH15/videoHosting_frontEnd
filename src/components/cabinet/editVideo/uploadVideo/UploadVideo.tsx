@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { MdUpload } from 'react-icons/md'
 import s from './UploadVideo.module.scss'
 interface IProps {
-	setVideo: any
+	setVideo: React.Dispatch<React.SetStateAction<string | File | undefined>>
 	handleVideoChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 	registerConfig?: any
 }

@@ -6,7 +6,10 @@
 		.listItem {
 			@apply flex;
 			&:hover {
-				@apply bg-slate-400 cursor-pointer;
+				@apply bg-darkGray cursor-pointer;
+			}
+			.icon {
+				@apply text-white;
 			}
 		}
 	}

@@ -4,7 +4,9 @@ import { Provider } from 'react-redux'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Login from './components/auth/login/Login'
 import Registration from './components/auth/registration/Registration'
-import AddVideo from './components/cabinet/addVideo/AddVideo'
+import Content from './components/cabinet/content/Content'
+import EditProfile from './components/cabinet/editProfile/EditProfile'
+import AddVideo from './components/cabinet/editVideo/AddVideo'
 import ChannelPage from './components/channel/ChannelPage'
 import Layout from './components/layout/Layout'
 import UserCabinetLayout from './components/layout/userCabinet/userCabinetLayout'
@@ -46,8 +48,16 @@ const router = createBrowserRouter([
 		element: <UserCabinetLayout />,
 		children: [
 			{
+				path: 'profile/edit',
+				element: <EditProfile />,
+			},
+			{
 				path: 'addVideo',
 				element: <AddVideo />,
+			},
+			{
+				path: 'content',
+				element: <Content />,
 			},
 		],
 	},

@@ -13,8 +13,6 @@ interface IProps {
 	videoResponse?: IVideoWithAuthorResponse
 }
 const VideoAction: React.FC<IProps> = ({ videoResponse }) => {
-	//const { userResponse } = useCustomContext()
-	//const { data, isLoading } = userResponse || {}
 	const [like] = useAddLikeMutation()
 	const [dislike] = useAddDislikeMutation()
 	const handleLike = () => {

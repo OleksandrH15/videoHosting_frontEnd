@@ -6,7 +6,6 @@ interface IProps {
 }
 const VideoDescription: React.FC<IProps> = ({ videoResponse }) => {
 	const [open, setOpen] = useState(false)
-	//const difference = useDifferenceInDays(videoResponse?.video.publicationDate)
 	const handleClick = () => {
 		setOpen(!open)
 	}

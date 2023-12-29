@@ -33,7 +33,11 @@ const Layout: React.FC = () => {
 					[s.open]: openMenu,
 				})}
 			>
-				<Outlet context={{ setOpenMenu, userResponse } satisfies ContextType} />
+				<Outlet
+					context={
+						{ setOpenMenu, userResponse, openMenu } satisfies ContextType
+					}
+				/>
 			</div>
 		</>
 	)
@@ -55,6 +59,7 @@ type ContextType = {
 		>
 	>
 	setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>
+	openMenu: boolean
 }
 
 export function useUserLayoutContext() {

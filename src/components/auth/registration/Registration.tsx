@@ -1,20 +1,29 @@
 //import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
-import { useRegistrationMutation } from '../../../services/auth.services'
+import { Link, useNavigate } from 'react-router-dom'
+import { IRegister } from '../../../interfaces/auth.interfaces'
+import {
+	useGetUserQuery,
+	useRegistrationMutation,
+} from '../../../services/auth.services'
 import Button from '../../ui/button/Button'
 import Input from '../../ui/input/Input'
 import s from '../Auth.module.scss'
 function SignUp() {
-	const {
-		handleSubmit,
-		control,
-		formState: { errors },
-	} = useForm()
-	const [register] = useRegistrationMutation()
-	const onSubmit = (data: any) => {
+	const { data: user, isSuccess: isSuccessUser } = useGetUserQuery()
+	const navigate = useNavigate()
+
+	const { handleSubmit, control } = useForm<IRegister>()
+	const [register, { isSuccess: isSuccessRegister }] = useRegistrationMutation()
+	const onSubmit = (data: IRegister) => {
 		register(data)
 	}
+
+	useEffect(() => {
+		if (isSuccessUser) navigate('/')
+		if (isSuccessRegister) navigate('/login')
+	}, [isSuccessUser, isSuccessRegister])
 
 	return (
 		<div className={s.authContainer}>

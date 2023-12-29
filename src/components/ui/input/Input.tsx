@@ -2,7 +2,7 @@ import React from 'react'
 import s from './Input.module.scss'
 
 interface IProps {
-	onChange: React.ChangeEventHandler<HTMLInputElement> | undefined
+	onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined
 	value?: string | number | readonly string[] | undefined
 	onBlur?: React.FocusEventHandler<HTMLInputElement> | undefined
 	onFocus?: React.FocusEventHandler<HTMLInputElement> | undefined
@@ -11,6 +11,7 @@ interface IProps {
 	placeholder?: string
 	name?: string
 	type?: 'text' | 'email' | 'password'
+	ref?: any
 }
 
 const Input: React.FC<IProps> = ({
@@ -23,17 +24,17 @@ const Input: React.FC<IProps> = ({
 	placeholder,
 	name,
 	type = 'text',
+	ref,
 }) => {
 	return (
 		<div className={s.container}>
 			<input
-				name={name}
-				placeholder={placeholder}
 				{...registerConfig}
+				placeholder={placeholder}
 				type={type}
 				onChange={onChange}
 				value={value}
-				onBlur={onBlur}
+				//onBlur={onBlur}
 				onFocus={onFocus}
 				required={required}
 			/>

@@ -1,17 +1,21 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { ILogin } from '../../../interfaces/auth.interfaces'
-import { useLoginMutation } from '../../../services/auth.services'
+import {
+	useGetUserQuery,
+	useLoginMutation,
+} from '../../../services/auth.services'
 import Button from '../../ui/button/Button'
 import Input from '../../ui/input/Input'
 import s from '../Auth.module.scss'
 
 export default function SignIn() {
+	const { data: user, isSuccess: isSuccessUser } = useGetUserQuery()
 	const { handleSubmit, control } = useForm<ILogin>()
 	const navigate = useNavigate()
-	const [login, { isSuccess, isError }] = useLoginMutation()
+	const [login, { isSuccess: isSuccessLogin, isError }] = useLoginMutation()
 
-	if (isSuccess) navigate('/')
+	if (isSuccessLogin || isSuccessUser) navigate('/')
 
 	const onSubmit: SubmitHandler<ILogin> = data => {
 		login(data)

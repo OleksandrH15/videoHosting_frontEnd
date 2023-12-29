@@ -67,6 +67,49 @@ export const authApi = api.injectEndpoints({
 		getFollowing: builder.query<IUser[], void>({
 			query: () => '/Auth/getFollowers',
 		}),
+		updateProfilePhoto: builder.mutation<any, any>({
+			query: () => ({
+				url: '/Auth/updateThumbnail',
+				method: 'PATCH',
+			}),
+			invalidatesTags: ['Auth'],
+		}),
+		updateFirstName: builder.mutation<any, any>({
+			query: () => ({
+				url: '/Auth/updateFirstName',
+				method: 'PATCH',
+			}),
+			invalidatesTags: ['Auth'],
+		}),
+		updateLastName: builder.mutation<any, any>({
+			query: () => ({
+				url: '/Auth/updateLastName',
+				method: 'PATCH',
+			}),
+			invalidatesTags: ['Auth'],
+		}),
+		updateEmail: builder.mutation<any, any>({
+			query: () => ({
+				url: '/Auth/updateEmail',
+				method: 'PATCH',
+			}),
+			invalidatesTags: ['Auth'],
+		}),
+		updatePassword: builder.mutation<any, any>({
+			query: () => ({
+				url: '/Auth/updatePassword',
+				method: 'PATCH',
+			}),
+			invalidatesTags: ['Auth'],
+		}),
+		updateProfileData: builder.mutation<any, any>({
+			query: body => ({
+				url: '/Auth/updateProfile',
+				method: 'PATCH',
+				body,
+			}),
+			invalidatesTags: ['Auth'],
+		}),
 	}),
 })
 
@@ -81,4 +124,10 @@ export const {
 	useIsFollowingQuery,
 	useGetUserByIdQuery,
 	useGetFollowingQuery,
+	useUpdateProfilePhotoMutation,
+	useUpdateEmailMutation,
+	useUpdatePasswordMutation,
+	useUpdateFirstNameMutation,
+	useUpdateLastNameMutation,
+	useUpdateProfileDataMutation,
 } = authApi

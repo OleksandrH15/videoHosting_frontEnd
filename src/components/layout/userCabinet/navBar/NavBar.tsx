@@ -7,12 +7,18 @@ const NavBar: React.FC = () => {
 		<div className={s.container}>
 			<ul>
 				{navbarList.map(item => (
-					<NavLink key={item.label} to={item.url}>
-						<li className={s.listItem}>
+					<li>
+						<NavLink
+							key={item.label}
+							to={item.url}
+							className={({ isActive }) =>
+								[isActive ? s.active : '', s.listItem].join(' ')
+							}
+						>
 							<span>{item.icon}</span>
 							{item.label}
-						</li>
-					</NavLink>
+						</NavLink>
+					</li>
 				))}
 			</ul>
 		</div>

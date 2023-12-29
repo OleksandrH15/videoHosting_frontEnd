@@ -1,9 +1,10 @@
-import { Avatar, Box, IconButton } from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import { useState } from 'react'
 import { BiUser } from 'react-icons/bi'
 import { MdOutlineVideoCall } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { IUser } from '../../../../interfaces/auth.interfaces'
+import Avatar from '../../../ui/avatar/Avatar'
 import s from './Icons.module.scss'
 import UserMenu from './userMenu/UserMenu'
 interface IProps {
@@ -25,7 +26,7 @@ const Icons: React.FC<IProps> = ({ user, userIsLoading }) => {
 				</IconButton>
 				{!userIsLoading && user ? (
 					<IconButton onClick={handleClick}>
-						<Avatar src={user.thumbnail}></Avatar>
+						<Avatar src={user.thumbnail} />
 					</IconButton>
 				) : (
 					<Link to='login'>
